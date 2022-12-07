@@ -33,7 +33,7 @@ def reachables(graph, s, reached):
         reached.add(s)
         if s in graph:
             for i in graph[s]:
-                reached | reachables(graph, i, reached)
+                reached = reached | reachables(graph, i, reached)
     return reached
         
 # print(reachables(parse_graph("graph.csv"), 'd', set()))
@@ -61,7 +61,10 @@ def shortest_distance(graph, v1, v2):
             if i in graph:
                 for j in graph[i]:
                     if j not in visited:
-                        edges[j] = visited[i] + graph[i][j]
+                        if j not in edges:
+                            edges[j] = visited[i] + graph[i][j]
+                        else:
+                            edges[j] = min(edges[j], visited[i] + graph[i][j])
 
 
         # si on n'a aucune arête c'est que c'est raté
