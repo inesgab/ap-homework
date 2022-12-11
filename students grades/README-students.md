@@ -339,7 +339,7 @@ class Class:
                 name = line.split(",")
                 self.add_student(Student(name[0], name[1]))
     
-    def load_grades_from_file(self, filename: str):
+    def load_grades_from_file(self, filename: str): #ça ne marche pas à partir d'ici, beaucoup de messages "error", ie tous les students sont None et je ne trouve pas le problème...
         with open(filename) as f:
             for line in f:
                 first_name, last_name, topic, *grades = line.split(',')
